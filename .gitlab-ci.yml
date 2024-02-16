@@ -1,0 +1,27 @@
+stages:
+  - integrity
+  - tests
+  - linting
+
+image: python:3.12-alpine
+
+1-integrity:
+  stage: integrity
+  tags:
+    - shell
+  script:
+    - echo "Integrity"
+
+2-tests:
+  stage: tests
+  tags:
+    - shell
+  script:
+    - echo "Testes"
+
+3-linting:
+  stage: linting
+  tags:
+    - shell
+  script:
+    - echo "Linting"
