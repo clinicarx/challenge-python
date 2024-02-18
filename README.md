@@ -33,6 +33,9 @@ docker-compose run unittest
 
 Lista de correções e melhorias necessárias.
 
+1. No módulo [Cards Game](./src/cards_game), implemente os métodos `shuffle` e `draw_cards` da classe `Deck`.  
+   A tarefa está concluída quando os testes unitários estiverem sendo aceitos.
+
 ## Conclusão
 
 Durante a realização das tarefas, as alterações devem ser confirmadas (via commit), 
