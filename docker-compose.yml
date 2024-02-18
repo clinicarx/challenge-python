@@ -1,18 +1,22 @@
 version: '3.7'
+x-challenge:
+  &challenge
+  image: python:3.12-slim
+  profiles:
+    - unittest
+  environment:
+    PYTHONUNBUFFERED: '1'
+    PIP_ROOT_USER_ACTION: ignore
+  volumes:
+    - ./coverage:/app/coverage
+    - ./requirements.txt:/app/requirements.txt
+    - ./src:/app/src
+    - ./tests:/app/tests
+    - python-packages:/usr/local/lib/python3.12/site-packages
+  working_dir: /app
 services: 
   unittest:
-    image: python:3.12-slim
-    profiles:
-      - unittest
-    environment:
-      PYTHONUNBUFFERED: '1'
-      PIP_ROOT_USER_ACTION: ignore
-    volumes:
-      - ./requirements.txt:/app/requirements.txt
-      - ./src:/app/src
-      - ./tests:/app/tests
-      - python-packages:/usr/local/lib/python3.12/site-packages
-    working_dir: /app
+    <<: *challenge
     command: 
       - /bin/sh
       - -c
@@ -20,19 +24,7 @@ services:
         pip install -q -r requirements.txt
         python -m unittest
   coverage:
-    image: python:3.12-slim
-    profiles:
-      - unittest
-    environment:
-      PYTHONUNBUFFERED: '1'
-      PIP_ROOT_USER_ACTION: ignore
-    volumes:
-      - ./requirements.txt:/app/requirements.txt
-      - ./src:/app/src
-      - ./tests:/app/tests
-      - ./coverage:/app/coverage
-      - python-packages:/usr/local/lib/python3.12/site-packages
-    working_dir: /app
+    <<: *challenge
     command: 
       - /bin/sh
       - -c
@@ -42,18 +34,7 @@ services:
         python -m coverage html -d /app/coverage
         python -m coverage report -m --fail-under=96
   lint:
-    image: python:3.12-alpine
-    profiles:
-      - unittest
-    environment:
-      PYTHONUNBUFFERED: '1'
-      PIP_ROOT_USER_ACTION: ignore
-    volumes:
-      - ./requirements.txt:/app/requirements.txt
-      - ./src:/app/src
-      - ./tests:/app/tests
-      - python-packages:/usr/local/lib/python3.12/site-packages
-    working_dir: /app
+    <<: *challenge
     command: 
       - /bin/sh
       - -c
