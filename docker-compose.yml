@@ -8,6 +8,7 @@ x-challenge:
     PYTHONUNBUFFERED: '1'
     PIP_ROOT_USER_ACTION: ignore
   volumes:
+    - ./lib:/app/lib
     - ./coverage:/app/coverage
     - ./requirements.txt:/app/requirements.txt
     - ./src:/app/src

@@ -35,7 +35,7 @@ Lista de correções e melhorias necessárias.
 
 > **Atenção:**  
 > Apenas os arquivos na pasta [`src`](./src) devem ser modificados.  
-> Os arquivos de testes na pasta [`test`](./tests) devem ser alterados.    
+> Os arquivos de testes nas pastas [`test`](./tests) e [`lib`](./lib) NÃO devem ser alterados.    
 
 ### Módulo [Cards Game](./src/cards_game)
 
