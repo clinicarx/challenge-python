@@ -27,6 +27,8 @@ if [ $? != 0 ]; then
     exit 2
 fi
 
+RBRANCH="`git ls-remote guilherme_nascimento.bundle | awk -F '/' '{print $NF}'`"
+
 git fetch $RNAME
-git checkout -b "$BRANCH" "$RNAME/master"
+git checkout -b "$BRANCH" "$RNAME/$RBRANCH"
 git push -u results "$BRANCH"
